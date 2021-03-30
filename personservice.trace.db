@@ -367,3 +367,9 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 2021-03-30 17:20:23 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO PERSONS VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin') ([*]666,'Lucifer','Sataneev')"; SQL statement:
 INSERT INTO persons VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin') (666,'Lucifer','Sataneev') [42000-200]
+2021-03-30 19:16:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT IGNORE[*] INTO PERSONS VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin'), (666,'Lucifer','Sataneev')"; expected "INTO"; SQL statement:
+INSERT IGNORE INTO persons VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin'), (666,'Lucifer','Sataneev') [42001-200]
+2021-03-30 19:24:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT IGNORE[*] INTO PERSONS VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin'), (666,'Lucifer','Sataneev')"; expected "INTO"; SQL statement:
+INSERT IGNORE INTO persons VALUES (1,'Boris','Schukin'), (2,'Boris','Gromov'), (3,'Ivan','Schukin'), (666,'Lucifer','Sataneev') [42001-200]

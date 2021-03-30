@@ -1,8 +1,8 @@
-package com.mihey.personapi.dao
+package com.mihey.personapi.service
 
 import com.mihey.personapi.model.Person
 
-interface PersonDao {
+interface PersonService {
 
     fun getPersons(): List<Person>
     fun findById(id: Int): Person
