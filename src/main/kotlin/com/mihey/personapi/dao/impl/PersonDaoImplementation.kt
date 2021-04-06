@@ -3,21 +3,20 @@ package com.mihey.personapi.dao.impl
 import com.mihey.personapi.dao.PersonDao
 import com.mihey.personapi.mapper.PersonMapper
 import com.mihey.personapi.model.Person
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
-class PersonDaoImplementation(@Autowired val jdbcTemplate: JdbcTemplate) : PersonDao {
+@Repository
+class PersonDaoImplementation(private val jdbcTemplate: JdbcTemplate) : PersonDao {
 
     override fun getPersons(): List<Person> {
         val sql = "SELECT * FROM persons"
         return jdbcTemplate.query(sql, PersonMapper())
     }
 
-    override fun findById(id: Int): Person {
+    override fun findById(id: Int): Person? {
         val sql = "SELECT * FROM persons WHERE id=?"
-        return jdbcTemplate.queryForObject(sql, PersonMapper(), id) ?: throw RuntimeException("No such person!")
+        return jdbcTemplate.queryForObject(sql, PersonMapper(), id)
     }
 
     override fun findByName(name: String): List<Person> {
@@ -30,16 +29,14 @@ class PersonDaoImplementation(@Autowired val jdbcTemplate: JdbcTemplate) : Perso
         return jdbcTemplate.query(sql, PersonMapper(), lastName)
     }
 
-    override fun savePerson(person: Person): Person {
+    override fun savePerson(person: Person) {
         val sql = "INSERT INTO persons (name,last_name) VALUES (?, ?)"
-        jdbcTemplate.update(sql,person.name,person.lastName)
-        return person
+        jdbcTemplate.update(sql, person.name, person.lastName)
     }
 
-    override fun updatePerson(person: Person): Person {
+    override fun updatePerson(person: Person) {
         val sql = "UPDATE persons SET name=?, last_name=?  WHERE id=?"
-        jdbcTemplate.update(sql,person.name,person.lastName,person.id)
-        return person
+        jdbcTemplate.update(sql, person.name, person.lastName, person.id)
     }
 
     override fun deleteById(id: Int) {

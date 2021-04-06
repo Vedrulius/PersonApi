@@ -5,10 +5,10 @@ import com.mihey.personapi.model.Person
 interface PersonDao {
 
     fun getPersons(): List<Person>
-    fun findById(id: Int): Person
+    fun findById(id: Int): Person?
     fun findByName(name: String): List<Person>
     fun findByLastName(lastName: String): List<Person>
-    fun savePerson(person: Person): Person
-    fun updatePerson(person: Person): Person
+    fun savePerson(person: Person)
+    fun updatePerson(person: Person)
     fun deleteById(id: Int)
 }
